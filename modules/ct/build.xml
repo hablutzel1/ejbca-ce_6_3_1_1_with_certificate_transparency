@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ct" basedir="../.." default="jar">
+    <property environment="env"/>
+    <dirname property="ct.dir" file="${ant.file.ct}"/>
+
+    <import file="${ct.dir}/../build.xml"/>
+    <import file="${ct.dir}/../cesecore-common/build.xml"/>
+
+    <target name="jar" depends="cesecore-common.jar">
+        <mkdir dir="${ct.dir}/build/classes"/>
+        <javac srcdir="${ct.dir}/src" destdir="${ct.dir}/build/classes" debug="on" includeantruntime="no"
+               encoding="UTF-8" target="${java.target.version}">
+            <classpath refid="lib.log4j.classpath"/>
+            <classpath refid="lib.bouncycastle.classpath"/>
+            <classpath refid="lib.ctlog.classpath"/>
+            <classpath location="${ct.dir}/../cesecore-common/dist/cesecore-common.jar"/>
+        </javac>
+        <jar destfile="${mod.ct.lib}">
+            <fileset dir="${ct.dir}/build/classes/"/>
+        </jar>
+    </target>
+
+    <target name="clean" depends="cesecore-common.clean">
+        <delete file="${mod.ct.lib}"/>
+        <delete dir="${ct.dir}/build"/>
+    </target>
+
+</project>
