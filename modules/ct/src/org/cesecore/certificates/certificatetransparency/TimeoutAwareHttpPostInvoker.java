@@ -4,7 +4,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.certificatetransparency.ctlog.comm.HttpPostInvoker;
@@ -23,7 +22,7 @@ class TimeoutAwareHttpPostInvoker extends HttpPostInvoker {
 
     @Override
     public String makePostRequest(String url, String jsonPayload) {
-        HttpClient httpClient = new DefaultHttpClient();
+        HttpClient httpClient = new TLS12HttpClient();
         HttpParams httpParams = httpClient.getParams();
         HttpConnectionParams.setConnectionTimeout(httpParams, timeout);
         HttpConnectionParams.setSoTimeout(httpParams, timeout);
