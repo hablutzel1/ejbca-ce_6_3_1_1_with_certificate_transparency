@@ -53,7 +53,7 @@ public class CertificateTransparencyImpl implements CertificateTransparency {
                 if (enabledCTLogs.contains(ctLogInfoId) && !retrievedSCTs.containsKey(ctLogInfoId)) {
                     CTLogInfo ctLogInfo = entry.getValue();
                     String logURL = ctLogInfo.getUrl();
-                    HttpLogClient client = new HttpLogClient(logURL + "ct/v1/", new TimeoutAwareHttpPostInvoker(ctLogInfo.getTimeout()));
+                    HttpLogClient client = new HttpLogClient(logURL + "ct/v1/", new CustomHttpInvoker(ctLogInfo.getTimeout()));
                     try {
                         Ct.SignedCertificateTimestamp sct = client.addCertificate(chain);
                         PublicKey logPublicKey = ctLogInfo.getLogPublicKey();

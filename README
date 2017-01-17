@@ -1,3 +1,5 @@
+Note that this EJBCA fork requires Java 7 because of the dependency on ctlog-jdk7-b61c0fa.jar.
+
 See doc/README for general documentation.
  
 See doc/licences/LICENSE for license conditions of EJBCA and others

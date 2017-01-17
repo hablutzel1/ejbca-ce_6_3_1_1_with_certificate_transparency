@@ -16,5 +16,4 @@ build-lib/
 build-status/
 build-ejb/
 build-interface/
-/lib/ct/*.jar
 /.project
